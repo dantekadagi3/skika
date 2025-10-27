@@ -96,4 +96,3 @@ credentials.json
 # Ignore migration files if manually managed
 skika_backend/core/migrations/
 !skika_backend/core/migrations/__init__.py
-
