@@ -1,0 +1,99 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff (specific to skika_backend)
+skika_backend/*.log
+skika_backend/local_settings.py
+skika_backend/db.sqlite3
+skika_backend/media/
+skika_backend/staticfiles/
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Virtualenv
+pip-selfcheck.json
+
+# macOS
+.DS_Store
+
+# IDEs and editors
+.idea/
+*.sublime-workspace
+*.vscode/
+.vscode/
+*.swp
+
+# Database backups
+skika_backend/backup_*.sql
+
+# Runtime data
+*.pid
+*.lock
+
+# Redis
+redis.conf
+dump.rdb
+
+# Africa's Talking or other API credentials (if separate files)
+credentials.json
+
+# Ignore migration files if manually managed
+skika_backend/core/migrations/
+!skika_backend/core/migrations/__init__.py
+
