@@ -1,22 +1,46 @@
 from rest_framework import serializers
-from .models import User, Report, Project, Feedback
+from .models import User, Ward, Project, Report, Feedback, AuditLog, Notification
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'phone_number', 'role', 'ward', 'created_at']
+        fields = '__all__'
+        extra_kwargs = {'password_hash': {'write_only': True}}
 
-class ReportSerializer(serializers.ModelSerializer):
+
+class WardSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Report
-        fields = ['id', 'ref_id', 'user', 'ward', 'category', 'description', 'status', 'created_at', 'updated_at', 'audit_trail']
+        model = Ward
+        fields = '__all__'
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'name', 'ward', 'description', 'created_at']
+        fields = '__all__'
+
+
+class ReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Report
+        fields = '__all__'
+        read_only_fields = ('ref_code',)
+
 
 class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Feedback
-        fields = ['id', 'report', 'satisfaction', 'comments', 'created_at']
+        fields = '__all__'
+
+
+class AuditLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AuditLog
+        fields = '__all__'
+
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = '__all__'

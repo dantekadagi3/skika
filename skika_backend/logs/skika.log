@@ -1,0 +1,934 @@
+INFO 2025-10-30 17:33:26,792 autoreload Watching for file changes with StatReloader
+WARNING 2025-10-30 17:33:30,007 log Not Found: /
+WARNING 2025-10-30 17:33:30,123 log Not Found: /favicon.ico
+INFO 2025-10-30 17:35:28,337 autoreload Watching for file changes with StatReloader
+ERROR 2025-10-30 17:35:47,875 log Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django_redis\cache.py", line 138, in has_key
+    return self.client.has_key(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django_redis\client\default.py", line 740, in has_key
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 440, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\debug.py", line 141, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\auth\views.py", line 88, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\generic\edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\auth\views.py", line 107, in form_valid
+    auth_login(self.request, form.get_user())
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\auth\__init__.py", line 126, in login
+    request.session.cycle_key()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 304, in cycle_key
+    self.create()
+    ~~~~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 42, in create
+    self._session_key = self._get_new_session_key()
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 150, in _get_new_session_key
+    if not self.exists(session_key):
+           ~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\sessions\backends\cache.py", line 73, in exists
+    bool(session_key) and (self.cache_key_prefix + session_key) in self._cache
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\cache\backends\base.py", line 300, in __contains__
+    return self.has_key(key)
+           ~~~~~~~~~~~~^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__  # noqa: B904
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django_redis\client\default.py", line 738, in has_key
+    return client.exists(key) == 1
+           ~~~~~~~~~~~~~^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\commands\core.py", line 1741, in exists
+    return self.execute_command("EXISTS", *names, keys=names)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\client.py", line 657, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\client.py", line 663, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\utils.py", line 196, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\connection.py", line 2601, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\connection.py", line 846, in connect
+    self.connect_check_health(check_health=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\redis\connection.py", line 863, in connect_check_health
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+INFO 2025-10-30 17:36:51,788 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\skika_backend\settings.py changed, reloading.
+INFO 2025-10-30 17:36:52,737 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 17:37:20,269 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\skika_backend\settings.py changed, reloading.
+INFO 2025-10-30 17:37:21,195 autoreload Watching for file changes with StatReloader
+ERROR 2025-10-30 17:37:54,075 log Internal Server Error: /admin/core/user/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "user" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "user"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1981, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 862, in get_changelist_instance
+    return ChangeList(
+        request,
+    ...<12 lines>...
+        self.search_help_text,
+    )
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 145, in __init__
+    self.get_results(request)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 312, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\query.py", line 618, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 616, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 602, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "user" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "user"
+                                          ^
+
+ERROR 2025-10-30 17:38:11,478 log Internal Server Error: /admin/core/auditlog/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "audit_log" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "audit_log"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1981, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 862, in get_changelist_instance
+    return ChangeList(
+        request,
+    ...<12 lines>...
+        self.search_help_text,
+    )
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 145, in __init__
+    self.get_results(request)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 312, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\query.py", line 618, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 616, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 602, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "audit_log" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "audit_log"
+                                          ^
+
+ERROR 2025-10-30 17:38:18,190 log Internal Server Error: /admin/core/feedback/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "feedback" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "feedback"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1981, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 862, in get_changelist_instance
+    return ChangeList(
+        request,
+    ...<12 lines>...
+        self.search_help_text,
+    )
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 145, in __init__
+    self.get_results(request)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 312, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\query.py", line 618, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 616, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 602, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "feedback" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "feedback"
+                                          ^
+
+ERROR 2025-10-30 17:38:23,439 log Internal Server Error: /admin/core/notification/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "notification" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "notification"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1981, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 862, in get_changelist_instance
+    return ChangeList(
+        request,
+    ...<12 lines>...
+        self.search_help_text,
+    )
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 145, in __init__
+    self.get_results(request)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 312, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\query.py", line 618, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 616, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 602, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "notification" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "notification"
+                                          ^
+
+INFO 2025-10-30 17:40:52,600 autoreload C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\psycopg2\_psycopg.cp313-win_amd64.pyd changed, reloading.
+INFO 2025-10-30 17:40:54,222 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 17:42:31,040 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 17:43:12,571 autoreload Watching for file changes with StatReloader
+ERROR 2025-10-30 17:44:29,774 log Internal Server Error: /admin/core/auditlog/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "audit_log" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "audit_log"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1981, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 862, in get_changelist_instance
+    return ChangeList(
+        request,
+    ...<12 lines>...
+        self.search_help_text,
+    )
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 145, in __init__
+    self.get_results(request)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 312, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\query.py", line 618, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 616, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 602, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "audit_log" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "audit_log"
+                                          ^
+
+INFO 2025-10-30 17:52:23,917 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 17:53:38,122 autoreload Watching for file changes with StatReloader
+ERROR 2025-10-30 17:53:54,561 log Internal Server Error: /admin/core/auditlog/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "audit_log" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "audit_log"
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1981, in changelist_view
+    cl = self.get_changelist_instance(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 862, in get_changelist_instance
+    return ChangeList(
+        request,
+    ...<12 lines>...
+        self.search_help_text,
+    )
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 145, in __init__
+    self.get_results(request)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\views\main.py", line 312, in get_results
+    result_count = paginator.count
+                   ^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\paginator.py", line 110, in count
+    return c()
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\query.py", line 618, in count
+    return self.query.get_count(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 616, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\query.py", line 602, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "audit_log" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "audit_log"
+                                          ^
+
+INFO 2025-10-30 17:59:42,495 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\migrations\0001_initial.py changed, reloading.
+INFO 2025-10-30 17:59:44,136 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:03:38,708 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\migrations\0001_initial.py changed, reloading.
+INFO 2025-10-30 18:03:40,506 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:05:37,270 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\skika_backend\settings.py changed, reloading.
+INFO 2025-10-30 18:05:38,673 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:06:19,488 autoreload Watching for file changes with StatReloader
+ERROR 2025-10-30 18:08:36,379 log Internal Server Error: /admin/core/user/add/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1941, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1802, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1853, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1257, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 916, in save_base
+    post_save.send(
+    ~~~~~~~~~~~~~~^
+        sender=origin,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        using=using,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\dispatch\dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py", line 248, in log_model_changes
+    user=instance.created_by if hasattr(instance, 'created_by') else instance.citizen,
+                                                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'citizen'
+ERROR 2025-10-30 18:08:44,077 log Internal Server Error: /admin/core/user/add/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1941, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1802, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1853, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1257, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 916, in save_base
+    post_save.send(
+    ~~~~~~~~~~~~~~^
+        sender=origin,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        using=using,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\dispatch\dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py", line 248, in log_model_changes
+    user=instance.created_by if hasattr(instance, 'created_by') else instance.citizen,
+                                                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'citizen'
+ERROR 2025-10-30 18:09:02,785 log Internal Server Error: /admin/core/user/add/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1941, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1802, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1853, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1257, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 916, in save_base
+    post_save.send(
+    ~~~~~~~~~~~~~~^
+        sender=origin,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        using=using,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\dispatch\dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py", line 248, in log_model_changes
+    user=instance.created_by if hasattr(instance, 'created_by') else instance.citizen,
+                                                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'citizen'
+ERROR 2025-10-30 18:10:05,746 log Internal Server Error: /admin/core/user/add/
+Traceback (most recent call last):
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 714, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\sites.py", line 240, in inner
+    return view(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1941, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1802, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1853, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\contrib\admin\options.py", line 1257, in save_model
+    obj.save()
+    ~~~~~~~~^^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\db\models\base.py", line 916, in save_base
+    post_save.send(
+    ~~~~~~~~~~~~~~^
+        sender=origin,
+        ^^^^^^^^^^^^^^
+    ...<4 lines>...
+        using=using,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LINET\Desktop\PROJECTS\ProjectsVenv\Lib\site-packages\django\dispatch\dispatcher.py", line 189, in send
+    response = receiver(signal=self, sender=sender, **named)
+  File "C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py", line 248, in log_model_changes
+    user=instance.created_by if hasattr(instance, 'created_by') else instance.citizen,
+                                                                     ^^^^^^^^^^^^^^^^
+AttributeError: 'User' object has no attribute 'citizen'
+INFO 2025-10-30 18:10:44,229 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:10:45,764 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:10:47,545 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:10:49,178 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:10:57,327 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:10:59,039 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:12:20,557 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:12:21,938 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:12:32,061 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:12:33,455 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:13:05,911 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:13:07,196 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:22:40,866 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:22:42,657 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:22:46,214 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:22:47,738 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:22:49,406 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:22:51,140 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:22:56,085 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:22:57,599 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:23:00,968 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:23:02,359 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:23:23,128 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:23:24,630 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:23:28,094 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:23:29,599 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:43:05,039 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:43:06,000 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:43:07,447 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:43:08,429 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:43:10,933 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:43:11,985 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:43:13,469 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:43:14,573 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:43:16,100 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:43:17,152 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:43:18,664 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:43:19,616 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 18:46:08,174 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\models.py changed, reloading.
+INFO 2025-10-30 18:46:09,208 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 19:04:00,939 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\views.py changed, reloading.
+INFO 2025-10-30 19:04:02,088 autoreload Watching for file changes with StatReloader
+INFO 2025-10-30 19:04:12,998 autoreload C:\Users\LINET\Desktop\PROJECTS\SKIKA\skika_backend\core\views.py changed, reloading.
+INFO 2025-10-30 19:04:14,124 autoreload Watching for file changes with StatReloader
