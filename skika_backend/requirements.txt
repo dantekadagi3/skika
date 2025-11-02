@@ -1,0 +1,27 @@
+# Core Django dependencies
+Django>=5.0.0
+djangorestframework>=3.14.0
+djangorestframework-simplejwt>=5.3.0
+python-decouple>=3.8
+
+# Database
+# psycopg2-binary>=2.9.0
+psycopg[binary]>=3.1
+
+# CORS Support for React Frontend
+django-cors-headers>=4.3.0
+
+# Africa's Talking API
+africastalking>=1.2.0
+
+# Optional: Redis for caching (install manually if needed)
+django-redis>=5.4.0
+
+# Optional: Transformer-based sentiment analysis (install manually if needed)
+transformers>=4.21.0
+torch>=2.0.0
+
+# Development dependencies (optional)
+django-debug-toolbar>=4.0.0
+pytest-django>=4.5.0
+textblob>=0.17.1
