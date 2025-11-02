@@ -81,14 +81,17 @@ WSGI_APPLICATION = 'skika_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='skika_db '),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default='123456789'),
-        'HOST': config('DB_HOST', default='localhost'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT', default='5432'),
+        # SSL configuration for production databases
         'OPTIONS': {
-            'sslmode': 'prefer',
+            'sslmode': config('DB_SSLMODE', default='require'),
         },
+        # optional: adjust connection persistence if needed
+        'CONN_MAX_AGE': config('DB_CONN_MAX_AGE', default=0, cast=int),
     }
 }
 
