@@ -315,9 +315,11 @@ AUTH_USER_MODEL = 'core.DashboardUser'
 # CORS Configuration for React Frontend
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001',
+    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,https://skika.onrender.com,https://skika.com',
     cast=Csv()
 )
+
+
 
 # Allow all origins in development (for testing)
 if DEBUG:
