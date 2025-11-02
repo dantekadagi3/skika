@@ -231,7 +231,8 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 # Custom User Model (optional future use)
 # AUTH_USER_MODEL = 'core.User'
-
+# SKIKA/skika_backend/skika_backend/settings.py
+AUTH_USER_MODEL = 'core.DashboardUser'
 # CORS (if React dashboard is on different domain)
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',

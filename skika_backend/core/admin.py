@@ -1,18 +1,26 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import User, Ward, Project, Report, Feedback, AuditLog, Notification
+from .models import DashboardUser, Citizen, Ward, Project, Report, Feedback, AuditLog, Notification
 
 
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('phone_number', 'get_name', 'role', 'ward', 'is_active', 'created_at')
-    list_filter = ('role', 'ward', 'is_active', 'created_at')
+@admin.register(DashboardUser)
+class DashboardUserAdmin(admin.ModelAdmin):
+    list_display = ('phone_number', 'get_full_name', 'role', 'ward', 'is_active', 'date_joined')
+    list_filter = ('role', 'ward', 'is_active', 'date_joined')
     search_fields = ('phone_number', 'first_name', 'last_name', 'email')
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('date_joined', 'last_login')
 
-    def get_name(self, obj):
-        return f"{obj.first_name or ''} {obj.last_name or ''}".strip() or "Citizen"
-    get_name.short_description = "Name"
+    def get_full_name(self, obj):
+        return f"{obj.first_name or ''} {obj.last_name or ''}".strip() or "Dashboard User"
+    get_full_name.short_description = "Name"
+
+
+@admin.register(Citizen)
+class CitizenAdmin(admin.ModelAdmin):
+    list_display = ('phone_number', 'ward', 'created_at')
+    list_filter = ('ward', 'created_at')
+    search_fields = ('phone_number',)
+    readonly_fields = ('created_at',)
 
 
 @admin.register(Ward)
@@ -21,29 +29,78 @@ class WardAdmin(admin.ModelAdmin):
     search_fields = ('name', 'constituency')
 
 
+class TranslationFieldsetMixin:
+    """Mixin to show English and Swahili fields in fieldsets"""
+    
+    class Media:
+        js = ('admin/js/translation_autofill.js',)
+
+
 @admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-    list_display = ('project_code', 'title', 'ward', 'status', 'budget_allocated', 'created_by')
-    list_filter = ('status', 'category', 'ward', 'created_at')
-    search_fields = ('project_code', 'title')
+class ProjectAdmin(admin.ModelAdmin, TranslationFieldsetMixin):
+    list_display = ('project_code', 'title_en', 'category_en', 'status_en', 'ward', 'created_by', 'created_at')
+    list_filter = ('status_en', 'category_en', 'ward', 'created_at')
+    search_fields = ('project_code', 'title_en', 'title_sw')
     readonly_fields = ('created_at', 'updated_at')
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('project_code', 'ward', 'created_by')
+        }),
+        ('Title & Description', {
+            'fields': (('title_en', 'title_sw'), ('description_en', 'description_sw'))
+        }),
+        ('Categories & Status (Auto-fill Swahili)', {
+            'fields': (('category_en', 'category_sw'), ('status_en', 'status_sw')),
+            'description': 'Select English options and Swahili will auto-fill when saved'
+        }),
+        ('Budget & Dates', {
+            'fields': ('budget_allocated', 'budget_used', 'start_date', 'end_date')
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        })
+    )
 
 
 @admin.register(Report)
-class ReportAdmin(admin.ModelAdmin):
-    list_display = ('ref_code', 'citizen', 'ward', 'category', 'status', 'priority_level', 'created_at')
-    list_filter = ('status', 'category', 'priority_level', 'ward', 'created_at')
+class ReportAdmin(admin.ModelAdmin, TranslationFieldsetMixin):
+    list_display = ('ref_code', 'citizen', 'ward', 'category_en', 'status_en', 'priority_level_en', 'created_at')
+    list_filter = ('status_en', 'category_en', 'priority_level_en', 'ward', 'created_at')
     search_fields = ('ref_code', 'description', 'citizen__phone_number')
     readonly_fields = ('ref_code', 'created_at', 'updated_at')
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('ref_code', 'citizen', 'ward', 'project')
+        }),
+        ('Categories & Status (Auto-fill Swahili)', {
+            'fields': (
+                ('category_en', 'category_sw'), 
+                ('status_en', 'status_sw'),
+                ('priority_level_en', 'priority_level_sw')
+            ),
+            'description': 'Select English options and Swahili will auto-fill when saved'
+        }),
+        ('Description & Notes', {
+            'fields': ('description', 'admin_notes')
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        })
+    )
+    
     actions = ['mark_under_review', 'mark_action_taken']
 
     def mark_under_review(self, request, queryset):
-        updated = queryset.update(status='under_review')
+        updated = queryset.update(status_en='under_review', status_sw='chini_ya_ukaguzi')
         self.message_user(request, f'{updated} reports marked as Under Review.')
     mark_under_review.short_description = "Mark selected as Under Review"
 
     def mark_action_taken(self, request, queryset):
-        updated = queryset.update(status='action_taken')
+        updated = queryset.update(status_en='action_taken', status_sw='hatua_imechukuliwa')
         self.message_user(request, f'{updated} reports marked as Action Taken.')
     mark_action_taken.short_description = "Mark selected as Action Taken"
 
