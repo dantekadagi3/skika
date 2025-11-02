@@ -78,22 +78,83 @@ WSGI_APPLICATION = 'skika_backend.wsgi.application'
 
 # Database - PostgreSQL
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT', default='5432'),
-        # SSL configuration for production databases
-        'OPTIONS': {
-            'sslmode': config('DB_SSLMODE', default='require'),
-        },
-        # optional: adjust connection persistence if needed
-        'CONN_MAX_AGE': config('DB_CONN_MAX_AGE', default=0, cast=int),
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST'),
+#         'PORT': config('DB_PORT', default='5432'),
+#         # SSL configuration for production databases
+#         'OPTIONS': {
+#             'sslmode': config('DB_SSLMODE', default='require'),
+#         },
+#         # optional: adjust connection persistence if needed
+#         'CONN_MAX_AGE': config('DB_CONN_MAX_AGE', default=0, cast=int),
+#     }
+# }
+
+import urllib.parse as _urlparse
+try:
+    import dj_database_url  # optional helper to parse DATABASE_URL
+    _HAS_DJ_DATABASE_URL = True
+except Exception:
+    _HAS_DJ_DATABASE_URL = False
+
+DATABASE_URL = config('DATABASE_URL', default=None)
+
+if DATABASE_URL:
+    # Use dj_database_url when available for full-featured parsing
+    if _HAS_DJ_DATABASE_URL:
+        DATABASES = {
+            'default': dj_database_url.parse(
+                DATABASE_URL,
+                conn_max_age=config('DB_CONN_MAX_AGE', default=20, cast=int)
+            )
+        }
+    else:
+        # Minimal parsing fallback using urllib.parse
+        parsed = _urlparse.urlparse(DATABASE_URL)
+        db_name = parsed.path.lstrip('/')
+        db_user = parsed.username or config('DB_USER')
+        db_password = parsed.password or config('DB_PASSWORD')
+        db_host = parsed.hostname or config('DB_HOST',)
+        db_port = parsed.port or config('DB_PORT')
+        # extract query params (e.g., sslmode=require)
+        query = _urlparse.parse_qs(parsed.query)
+        sslmode = query.get('sslmode', [config('DB_SSLMODE', default='require')])[0]
+
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': db_name,
+                'USER': db_user,
+                'PASSWORD': db_password,
+                'HOST': db_host,
+                'PORT': str(db_port),
+                'OPTIONS': {
+                    'sslmode': sslmode,
+                },
+                'CONN_MAX_AGE': config('DB_CONN_MAX_AGE', default=0, cast=int),
+            }
+        }
+else:
+    # Fallback to individual env vars (original behavior)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': config('DB_PORT', default='5432'),
+            'OPTIONS': {
+                'sslmode': config('DB_SSLMODE', default='require'),
+            },
+            'CONN_MAX_AGE': config('DB_CONN_MAX_AGE', default=0, cast=int),
+        }
     }
-}
 
 # Cache - Redis with fallback to Django's default cache
 # Use Redis when available, fallback to local memory cache for development
