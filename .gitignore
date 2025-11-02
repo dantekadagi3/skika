@@ -94,5 +94,37 @@ dump.rdb
 credentials.json
 
 # Ignore migration files if manually managed
-skika_backend/core/migrations/
-!skika_backend/core/migrations/__init__.py
+# skika_backend/core/migrations/
+# !skika_backend/core/migrations/__init__.py
+
+
+
+FRONTEND # Ignore node modules
+skika_frontend/node_modules/
+skika_frontend/.next/
+# Ignore environment files
+skika_frontend/.env.local
+skika_frontend/.env.development.local
+skika_frontend/.env.test.local  
+skika_frontend/.env.production.local
+# Ignore build output
+skika_frontend/out/
+skika_frontend/build/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+
+# debug
+skika_frontend/npm-debug.log*
+skika_frontend/yarn-debug.log*
+skika_frontend/yarn-error.log*
+skika_frontend/.pnpm-debug.log*
+
+# env files
+skika_frontend/.env*
+
+# vercel
+skika_frontend/.vercel
+
+# typescript
+skika_frontend/*.tsbuildinfo
+skika_frontend/next-env.d.ts

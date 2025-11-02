@@ -315,7 +315,8 @@ AUTH_USER_MODEL = 'core.DashboardUser'
 # CORS Configuration for React Frontend
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001',
+    # include production frontend origin(s) here; can be overridden via env
+    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001,https://skika.onrender.com',
     cast=Csv()
 )
 
@@ -334,6 +335,15 @@ else:
 # In DEBUG mode, allow all origins (development)
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
+
+# CSRF trusted origins for deployments using HTTPS (required by Django's
+# origin checking). Read from env or fallback to the production frontend
+# origin used on Render. MUST include the scheme (e.g. "https://...").
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='https://skika.onrender.com',
+    cast=Csv()
+)
 
 # Enable credentials and configure headers
 CORS_ALLOW_CREDENTIALS = True
