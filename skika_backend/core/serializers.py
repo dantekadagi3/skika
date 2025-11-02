@@ -79,3 +79,14 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = '__all__'
+        
+    def validate(self, data):
+        """Auto-fill Swahili status if not provided"""
+        if 'status_en' in data and 'status_sw' not in data:
+            status_mapping = {
+                'pending': 'inayosubiri',
+                'sent': 'imetumwa',
+                'failed': 'imeshindwa'
+            }
+            data['status_sw'] = status_mapping.get(data['status_en'], 'inayosubiri')
+        return data

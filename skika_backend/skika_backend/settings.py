@@ -32,13 +32,21 @@ INSTALLED_APPS = [
     # Third-party
     'rest_framework',
     'rest_framework_simplejwt',
-    'django_redis',
+    'corsheaders',
 
     # Local
     'core',
 ]
 
+# Optional Redis support - only add if available
+try:
+    import django_redis
+    INSTALLED_APPS.append('django_redis')
+except ImportError:
+    pass
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -73,7 +81,7 @@ WSGI_APPLICATION = 'skika_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='skika_n_db '),
+        'NAME': config('DB_NAME', default='skika_db '),
         'USER': config('DB_USER', default='postgres'),
         'PASSWORD': config('DB_PASSWORD', default='123456789'),
         'HOST': config('DB_HOST', default='localhost'),
@@ -88,7 +96,14 @@ DATABASES = {
 # Use Redis when available, fallback to local memory cache for development
 USE_REDIS = config('USE_REDIS', default=True, cast=bool)
 
-if USE_REDIS:
+# Check if django_redis is available
+try:
+    import django_redis
+    REDIS_AVAILABLE = True
+except ImportError:
+    REDIS_AVAILABLE = False
+
+if USE_REDIS and REDIS_AVAILABLE:
     CACHES = {
         "default": {
             "BACKEND": "django_redis.cache.RedisCache",
@@ -233,12 +248,55 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 # AUTH_USER_MODEL = 'core.User'
 # SKIKA/skika_backend/skika_backend/settings.py
 AUTH_USER_MODEL = 'core.DashboardUser'
-# CORS (if React dashboard is on different domain)
+# CORS Configuration for React Frontend
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000',
+    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:3001',
     cast=Csv()
 )
+
+# Allow all origins in development (for testing)
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOW_ALL_ORIGINS = False
+# Allow React dev servers
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+#     'http://127.0.0.1:3000', 
+#     'http://localhost:3001'
+# ]
+
+# In DEBUG mode, allow all origins (development)
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+
+# Enable credentials and configure headers
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_HEADERS = ['authorization', 'content-type', ...]
+CORS_ALLOWED_METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH']
+# CORS Headers
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+CORS_ALLOWED_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 # Backup Settings (optional)
 BACKUP_DIR = BASE_DIR / 'backups'

@@ -123,10 +123,27 @@ class AuditLogAdmin(admin.ModelAdmin):
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('recipient_phone', 'message_preview', 'status', 'trigger_event', 'sent_at')
-    list_filter = ('status', 'trigger_event', 'created_at')
+    list_display = ('recipient_phone', 'message_preview', 'status_en', 'trigger_event', 'sent_at')
+    list_filter = ('status_en', 'trigger_event', 'created_at')
     search_fields = ('recipient_phone', 'message')
     readonly_fields = ('created_at', 'sent_at')
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('recipient_phone', 'trigger_event')
+        }),
+        ('Message Content', {
+            'fields': ('message',)
+        }),
+        ('Status (Auto-fill Swahili)', {
+            'fields': (('status_en', 'status_sw'),),
+            'description': 'Select English status and Swahili will auto-fill when saved'
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'sent_at'),
+            'classes': ('collapse',)
+        })
+    )
 
     def message_preview(self, obj):
         return obj.message[:50] + "..." if len(obj.message) > 50 else obj.message

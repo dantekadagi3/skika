@@ -7,6 +7,7 @@ from .views import (
     ReportViewSet, FeedbackViewSet, AuditLogViewSet, NotificationViewSet,
     get_translations, translate_field, dashboard_stats
 )
+from .views import sentiment_analysis
 
 router = DefaultRouter()
 router.register(r'dashboard-users', DashboardUserViewSet)
@@ -31,4 +32,5 @@ urlpatterns = [
     path('translations/', get_translations, name='get_translations'),
     path('translate/', translate_field, name='translate_field'),
     path('dashboard-stats/', dashboard_stats, name='dashboard_stats'),
+    path('sentiment/', sentiment_analysis, name='sentiment_analysis'),
 ]

@@ -1,5 +1,5 @@
 import uuid
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models.signals import post_save
@@ -55,6 +55,45 @@ africastalking.initialize(
 sms = africastalking.SMS
 
 
+class DashboardUserManager(BaseUserManager):
+    """Custom manager for DashboardUser"""
+    
+    def create_user(self, phone_number, password=None, **extra_fields):
+        """Create and return a regular user with phone_number"""
+        if not phone_number:
+            raise ValueError('Phone number is required')
+        
+        # Normalize phone number (ensure it starts with +254)
+        if not phone_number.startswith('+'):
+            if phone_number.startswith('0'):
+                phone_number = '+254' + phone_number[1:]
+            elif phone_number.startswith('254'):
+                phone_number = '+' + phone_number
+            else:
+                phone_number = '+254' + phone_number
+        
+        # Set username to phone_number for compatibility (can be overridden in extra_fields)
+        if 'username' not in extra_fields:
+            extra_fields['username'] = phone_number
+        
+        user = self.model(phone_number=phone_number, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+    
+    def create_superuser(self, phone_number, password=None, **extra_fields):
+        """Create and return a superuser with phone_number"""
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('role', 'superadmin')
+        
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
+        
+        return self.create_user(phone_number, password, **extra_fields)
+
 
 class DashboardUser(AbstractUser):
     ROLE_CHOICES = [
@@ -66,9 +105,14 @@ class DashboardUser(AbstractUser):
     phone_number = models.CharField(max_length=20, unique=True, db_index=True)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='admin')
     ward = models.ForeignKey('Ward', on_delete=models.SET_NULL, null=True, blank=True, related_name='dashboard_users')
+    
+    # Override username to be nullable since we use phone_number
+    username = models.CharField(max_length=150, null=True, blank=True)
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = []
+
+    objects = DashboardUserManager()
 
     class Meta:
         db_table = 'dashboard_user'
@@ -114,7 +158,7 @@ class Project(models.Model):
         ('completed', 'Completed'), ('stalled', 'Stalled')
     ]
     STATUS_CHOICES_SW = [
-        ('imepangwa', 'Imeplanwa'), ('inaendelea', 'Inaendelea'),
+        ('imepangwa', 'Imepangwa'), ('inaendelea', 'Inaendelea'),
         ('imekamilika', 'Imefanyika'), ('imekwama', 'Imekwama')
     ]
     CATEGORY_CHOICES_SW = [
@@ -281,16 +325,30 @@ class Notification(models.Model):
         ('feedback_request', 'Feedback Request')
     ]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    recipient_phone = models.CharField(max_length=20)
+    recipient_phone = models.CharField(max_length=200)
     message = models.TextField()
-    status_en = models.CharField(max_length=10, choices=STATUS_CHOICES_EN, default='pending')
-    status_sw = models.CharField(max_length=10, choices=STATUS_CHOICES_SW, default='inayosubiri')   
-    trigger_event = models.CharField(max_length=30, choices=EVENT_CHOICES)
+    status_en = models.CharField(max_length=200, choices=STATUS_CHOICES_EN, default='pending')
+    status_sw = models.CharField(max_length=1200, choices=STATUS_CHOICES_SW, default='inayosubiri')   
+    trigger_event = models.CharField(max_length=300, choices=EVENT_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
     sent_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'notification'
+    
+    def save(self, *args, **kwargs):
+        # Auto-fill Swahili status if not provided
+        if self.status_en and not self.status_sw:
+            status_mapping = {
+                'pending': 'inayosubiri',
+                'sent': 'imetumwa',
+                'failed': 'imeshindwa'
+            }
+            self.status_sw = status_mapping.get(self.status_en, 'inayosubiri')
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"SMS to {self.recipient_phone} - {self.status_en}"
 
 
 
@@ -310,8 +368,16 @@ def log_admin_actions(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Report)
 def send_status_sms(sender, instance, created, **kwargs):
-    if not created and instance.status != 'received':
-        msg = f"Report {instance.ref_code} is now '{instance.get_status_display()}'."
+    if not created and instance.status_en != 'received':
+        # Get human-readable status from choices
+        status_display_en = dict(Report.STATUS_CHOICES_EN).get(instance.status_en, instance.status_en)
+        status_display_sw = dict(Report.STATUS_CHOICES_SW).get(instance.status_sw, instance.status_sw)
+        
+        # Create bilingual message
+        msg_en = f"Report {instance.ref_code} is now {status_display_en}."
+        msg_sw = f"Ripoti {instance.ref_code} sasa ni {status_display_sw}."
+        msg = f"{msg_en} / {msg_sw}"
+        
         Notification.objects.create(
             recipient_phone=instance.citizen.phone_number,
             message=msg,
@@ -319,6 +385,6 @@ def send_status_sms(sender, instance, created, **kwargs):
         )
         try:
             sms.send(msg, [instance.citizen.phone_number])
-            Notification.objects.filter(message=msg).update(status='sent', sent_at=timezone.now())
+            Notification.objects.filter(message=msg).update(status_en='sent', sent_at=timezone.now())
         except:
-            Notification.objects.filter(message=msg).update(status='failed')
+            Notification.objects.filter(message=msg).update(status_en='failed')

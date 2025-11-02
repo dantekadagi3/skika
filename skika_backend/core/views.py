@@ -14,6 +14,12 @@ from .translations import get_swahili_translation, get_display_translation
 import africastalking
 from decouple import config
 import uuid
+try:
+    # Prefer transformer-based analyzer when available
+    from .utils.sentiment_transformer import analyze_sentiment
+except Exception:
+    # Fall back to the lightweight lexicon analyzer
+    from .utils.sentiment import analyze_sentiment
 
 # Initialize Africa's Talking
 africastalking.initialize(
@@ -380,6 +386,29 @@ def translate_field(request):
         'english_value': english_value,
         'swahili_value': swahili_value,
         'display_value': display_value
+    })
+
+
+@api_view(['POST'])
+@permission_classes([permissions.AllowAny])
+def sentiment_analysis(request):
+    """Analyze sentiment for a provided text string.
+
+    Request JSON: {"text": "..."}
+    Response: {
+      "text": "...",
+      "sentiment": {"score": float, "label": str, ...}
+    }
+    """
+    text = request.data.get('text') or ''
+    if text is None or text == '':
+        return Response({'error': 'text is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+    result = analyze_sentiment(text)
+
+    return Response({
+        'text': text,
+        'sentiment': result
     })
 
 
